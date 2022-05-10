@@ -1,47 +1,47 @@
 <template>
-  <el-breadcrumb :separator-icon="ArrowRight">
+  <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">首页</el-breadcrumb-item>
     <el-breadcrumb-item class="el-breadcrumb-item">机构简介</el-breadcrumb-item>
   </el-breadcrumb>
   <el-divider/>
-  <div style="display:flex;flex-direction:row">
-  <div>
-    <p style="text-shadow: 2px 2px;font-size:40px;color:red;position:relative;left:100px">{{form.specialName}}</p>
-  <el-form :model="form" label-width="100px" style="width:400px;position:relative;left:80px">
-      <el-form-item label="名称：">
-          <el-input v-model="form.name" size="large" disabled></el-input>
-      </el-form-item>
-      <div style="margin-top:0px;margin-left:20px">
-          <el-tag type="success" effect="dark" round size="large">
-              {{form.local}}
-          </el-tag>
-          <el-tag type="success" effect="dark" round size="large" style="margin:20px">
-              {{form.level}}
-          </el-tag>
-          <el-tag type="success" effect="dark" round size="large">
-              {{form.kind}}
-          </el-tag>
-      </div>
-      <el-form-item label="所在地区：">
-        <el-cascader v-model="form.area" :options="options" size="large" disabled/>
-      </el-form-item>
-      <el-form-item label="地址：">
-          <el-input v-model="form.address" size="large" disabled></el-input>
-      </el-form-item>
-      <el-form-item label="营业时间：">
-          <el-input v-model="form.date" size="large" disabled></el-input>
-      </el-form-item>
-      <el-form-item label="联系电话：">
-          <el-input v-model="form.phone" size="large" disabled></el-input>
-      </el-form-item>
-  </el-form>
-  </div>
-  <div style="margin-left:-30px">
+  <div class="admin-introduce">
+  <el-card class="card-wrap" style="width: 700px">
+    <p class="special-name">{{form.specialName}}</p>
+      <el-form :model="form" label-width="100px">
+          <el-form-item label="名称：">
+              <el-input v-model="form.name" size="large" disabled></el-input>
+          </el-form-item>
+          <div style="margin-top:0px;margin-left:20px">
+              <el-tag type="success" effect="dark" round size="large">
+                  {{form.local}}
+              </el-tag>
+              <el-tag type="success" effect="dark" round size="large" style="margin:20px">
+                  {{form.level}}
+              </el-tag>
+              <el-tag type="success" effect="dark" round size="large">
+                  {{form.kind}}
+              </el-tag>
+          </div>
+          <el-form-item label="所在地区：">
+            <el-cascader v-model="form.area" :options="options" size="large" disabled/>
+          </el-form-item>
+          <el-form-item label="地址：">
+              <el-input v-model="form.address" size="large" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="营业时间：">
+              <el-input v-model="form.date" size="large" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="联系电话：">
+              <el-input v-model="form.phone" size="large" disabled></el-input>
+          </el-form-item>
+      </el-form>
+  </el-card>
+  <el-card class="card-wrap" style="width: 700px">
     <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-  <div style="width:600px;height:400px;margin-left:200px;white-space:pre-line;text-align:left;color:blue">
-      {{form.introduce}}
-  </div>
-  </div>
+    <div style="width:600px;height:400px;margin-left:200px;white-space:pre-line;text-align:left;color:blue">
+        {{form.introduce}}
+    </div>
+  </el-card>
   </div>
 </template>
 
@@ -117,8 +117,10 @@ axios.post('http://localhost:8081/graduation-project/AdminMenu/InstitutionIntrod
 </script>
 
 <style scoped>
-.el-breadcrumb-item{
-    font-size: 30px;
+.admin-introduce{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
 }
 .avatar-uploader .el-upload {
   border: 1px dashed var(--el-border-color);
@@ -144,5 +146,13 @@ axios.post('http://localhost:8081/graduation-project/AdminMenu/InstitutionIntrod
     width: 178px;
     height: 178px;
     margin-left:150px
+}
+
+.special-name{
+  text-shadow: 2px 2px;
+  font-size:40px;
+  color:red;
+  position:relative;
+  left:100px
 }
 </style>

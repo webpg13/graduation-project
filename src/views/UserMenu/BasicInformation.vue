@@ -2,7 +2,7 @@
   <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">个人信息</el-breadcrumb-item>
     <el-breadcrumb-item class="el-breadcrumb-item">基本信息</el-breadcrumb-item>
-    <el-dropdown trigger="click" class="el-dropdown_cls">
+    <el-dropdown trigger="click" style="margin-left: 700px;" class="el-dropdown_cls">
         <span class="el-dropdown-link">
           修改信息<el-icon class="el-icon--right"><arrow-down /></el-icon>
         </span>

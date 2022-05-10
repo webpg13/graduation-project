@@ -1,9 +1,9 @@
 <template>
-  <el-breadcrumb :separator-icon="ArrowRight">
+  <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">疫苗管理</el-breadcrumb-item>
     <el-breadcrumb-item class="el-breadcrumb-item">疫苗余量</el-breadcrumb-item>
-    <el-dropdown style=";margin-left:300px">
-    <span style="font-size:20px">
+    <el-dropdown style=";margin-left:300px" class="el-dropdown_cls">
+    <span class="el-dropdown-link">
       特殊功能
       <el-icon class="el-icon--right">
         <arrow-down />
@@ -24,11 +24,11 @@
     :on-success="uploadSuccess"
     :show-file-list="false"
   >
-    <el-button type="primary">批量导入</el-button>
+    <el-button type="primary" size="small">批量导入</el-button>
   </el-upload>
 
   <a href="/疫苗模板.xls" download>
-    <el-button >
+    <el-button size="small">
     模板下载
     </el-button>
   </a>
@@ -107,6 +107,10 @@
         <el-button type="text" size="large" style="margin-left:20px" @click="deleteOpen(scope.row)">删除</el-button>
       </template>
     </el-table-column>
+    <!-- 暂无数据时显示 -->
+    <template v-slot:empty>
+      <el-empty :image-size="200" description="暂无数据"></el-empty>
+    </template>
   </el-table>
   <el-pagination class="el-pagination_cls"
   @size-change="handleSizeChange"

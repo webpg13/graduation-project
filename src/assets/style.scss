@@ -36,9 +36,39 @@ $blue-409eff: #409eff;
 
 .nav-cls {
   height: 60px;
-  width: 500px;
-  position: relative;
-  left: 150px;
+  min-width: 500px;
+  margin: 0 0 0 150px;
+
+  .el-row {
+    flex-wrap: nowrap;
+    height: 100%;
+
+    .el-col {
+      margin: 0 8px;
+
+      p{
+        position: relative;
+        margin-bottom: 0;
+        padding-bottom: 4px;
+        border-bottom: 1px solid $el-menu-item-bg;
+        // border-right: 1px solid $el-menu-item-bg;
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          right: -7px;
+          bottom: -7px;
+          width: 0px;
+          height: 0px;
+          transform: rotate(225deg);
+          border: 7px solid $el-menu-item-bg;
+          border-bottom-color: transparent;
+          border-left-color: transparent;
+          border-top-color: transparent;
+        }
+      }
+    }
+  }
 
   * {
     color: $gray-909399;
@@ -150,7 +180,6 @@ $blue-409eff: #409eff;
 
 // 下拉菜单样式
 .el-dropdown_cls {
-  margin-left: 700px;
 
   .el-dropdown-link {
     @include flex-hc;
@@ -183,4 +212,15 @@ $blue-409eff: #409eff;
   background: var(--el-color-white);
   padding: 8px 0;
   border: 1px solid #dcdfe6;
+}
+
+// 表格搜索组样式
+.search-wrap {
+  padding: 15px 20px 10px;
+  text-align: left;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: #eef2fe;
+  border: 1px solid #dcdfe6;
+  border-bottom: none;
 }

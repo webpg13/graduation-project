@@ -1,12 +1,12 @@
 <template>
-  <el-breadcrumb :separator-icon="ArrowRight">
+  <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">用户请求</el-breadcrumb-item>
     <el-breadcrumb-item class="el-breadcrumb-item">预约信息</el-breadcrumb-item>
-    <el-button @click="bulkDelete">批量删除</el-button>
-    <el-button @click="click">批量完成</el-button>
-    <el-date-picker v-model="date" type="date" value-format="YYYY-MM-DD" @change="dateChange"/>
-    <el-button @click="checkAll">查看所有</el-button>
-    <el-button @click="exportExcelClick">导出</el-button>
+    <el-button size="small" @click="bulkDelete">批量删除</el-button>
+    <el-button size="small" @click="click">批量完成</el-button>
+    <el-date-picker size="small" v-model="date" type="date" value-format="YYYY-MM-DD" @change="dateChange"/>
+    <el-button size="small" @click="checkAll">查看所有</el-button>
+    <el-button size="small" @click="exportExcelClick">导出</el-button>
   </el-breadcrumb>
   <el-divider/>
   <el-table :data="bookingDatas.slice((currentPage - 1) * pageSize, currentPage*pageSize)" style="width: 100%"
@@ -61,6 +61,10 @@
         >
       </template>
     </el-table-column>
+    <!-- 暂无数据时显示 -->
+    <template v-slot:empty>
+      <el-empty :image-size="200" description="暂无数据"></el-empty>
+    </template>
   </el-table>
   <el-pagination class="el-pagination_cls"
   @current-change="handleCurrentChange"

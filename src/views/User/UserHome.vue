@@ -1,6 +1,6 @@
 <template>
-  <el-container class="outContainer">
-      <el-header class="el-header_cls">
+  <el-container class="outContainer" direction="vertical">
+      <!-- <el-header class="el-header_cls">
         <div class="VMSWDiv">
           <el-image :src="require('@/assets/VMSW.png')" :fit="cover"/>
         </div>
@@ -15,22 +15,19 @@
             <el-col :span="6"><p>社区</p></el-col>
           </el-row>
         </div>
-        <!-- <div> -->
           <p class="welcome">欢迎您，{{name}}</p>
-        <!-- </div> -->
         <div class="logout-btn">
           <el-button type="warning" plain @click="exit">退出</el-button>
         </div>
         <div>
-          <!-- <img :src="imageUrl" class="avatar"/> -->
           <el-avatar class="avatar" shape="square" size="medium" :src="imageUrl"></el-avatar>
         </div>
-      </el-header>
+      </el-header> -->
+      <Header></Header>
       <el-container>
           <el-aside>
-            <el-menu class="el-menu_cls" default-active="/MenuTest" :background-color="color"
-                     text-color="#fff" active-text-color="#0d63fa" @select="handleSelect">
-                     <el-color-picker v-model="color" show-alpha :predefine="predefineColors"/>
+            <el-menu class="el-menu_cls" default-active="/MenuTest" :background-color="color" text-color="#fff" active-text-color="#ffd04b" @select="handleSelect">
+              <el-color-picker v-model="color" show-alpha :predefine="predefineColors"/>
               <el-sub-menu index="1">
                 <template #title>
                   <span >个人信息</span>
@@ -92,12 +89,13 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import axios from 'axios'
-import Qs from 'qs'
+/* import axios from 'axios'
+import Qs from 'qs' */
+import Header from '@/components/Header.vue'
 
 const router = useRouter()
 
-const nowTime = ref('')
+/* const nowTime = ref('')
 const name = ref('')
 
 const exit = () => {
@@ -119,7 +117,7 @@ axios.post('http://localhost:8081/graduation-project/Utils/GetUserAccount.php', 
 })
 setInterval(() => {
   nowTime.value = new Date().toLocaleString()
-}, 1000)
+}, 1000) */
 
 document.querySelector('body').setAttribute('style', 'margin:0')
 const handleSelect = (key, keyPath) => {

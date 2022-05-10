@@ -1,57 +1,65 @@
 <template>
-  <el-breadcrumb :separator-icon="ArrowRight">
+  <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">机构信息</el-breadcrumb-item>
     <el-breadcrumb-item class="el-breadcrumb-item">疫苗请求</el-breadcrumb-item>
     <el-button @click="check" style="font-size:30px" type="text">查看进程</el-button>
   </el-breadcrumb>
   <el-divider/>
-  <el-container style="height:560px">
+  <el-container class="vaccine-request">
     <el-aside style="width:700px;">
-      <p style="font-size:25px;color:blue;margin-right:50px">{{institutionName}}</p>
-  <el-form :model="form" style="margin-left:120px;margin-top:20px" label-width="120px">
-    <el-form-item label="请求地区">
-      <el-cascader v-model="form.area" :options="options" @change="selectChange" size="large"/>
-    </el-form-item>
-    <el-form-item label="请求机构">
-      <el-select v-model="form.institutionId" size="large">
-        <el-option
-           v-for="item in institutions"
-           :key="item.institutionId"
-           :label="item.institutionName"
-           :value="item.institutionId"/>
-      </el-select>
-    </el-form-item>
-    <el-form-item label="请求疫苗">
-      <el-select v-model="form.vaccineId" size="large" @change="vaccineChange">
-        <el-option
-           v-for="item in vaccines"
-           :key="item.vaccine_id"
-           :label="item.vaccine_name"
-           :value="item.vaccine_id"/>
-      </el-select>
-    </el-form-item>
-    <el-form-item label="请求数量">
-      <el-slider v-model="form.number" show-input max="100" style="width:300px" size="large"/>
-    </el-form-item>
-    <el-form-item label="请求单价">
-      <el-input-number v-model="form.price" :precision="2" :step="0.1" :max="500" size="large"/>
-    </el-form-item>
-    <el-form-item label="请求到达日期">
-      <el-date-picker v-model="form.date" type="date" value-format="YYYY-MM-DD" size="large"/>
-    </el-form-item>
-    <el-form-item>
-      <el-button round @click="submit">提交</el-button>
-    </el-form-item>
-  </el-form>
-  </el-aside>
-  <el-main>
+      <el-card class="card-wrap" style="width: 700px">
+        <p style="font-size:25px;color:blue;margin-right:50px">{{institutionName}}</p>
+        <el-form :model="form" label-width="120px">
+          <el-form-item label="请求地区">
+            <el-cascader v-model="form.area" :options="options" @change="selectChange" size="large"/>
+          </el-form-item>
+          <el-form-item label="请求机构">
+            <el-select v-model="form.institutionId" size="large">
+              <el-option
+                v-for="item in institutions"
+                :key="item.institutionId"
+                :label="item.institutionName"
+                :value="item.institutionId"/>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="请求疫苗">
+            <el-select v-model="form.vaccineId" size="large" @change="vaccineChange">
+              <el-option
+                v-for="item in vaccines"
+                :key="item.vaccine_id"
+                :label="item.vaccine_name"
+                :value="item.vaccine_id"/>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="请求数量">
+            <el-slider v-model="form.number" show-input max="100" style="width:300px" size="large"/>
+          </el-form-item>
+          <el-form-item label="请求单价">
+            <el-input-number v-model="form.price" :precision="2" :step="0.1" :max="500" size="large"/>
+          </el-form-item>
+          <el-form-item label="请求到达日期">
+            <el-date-picker v-model="form.date" type="date" value-format="YYYY-MM-DD" size="large"/>
+          </el-form-item>
+          <el-form-item>
+            <el-button round @click="submit">提交</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </el-aside>
+    <el-main>
+      <el-card class="card-wrap" style="width: 100%">
         <p style="text-align:center">市内疫苗统计</p>
         <el-table :data ="areaVaccines" style="width:100%;margin-top:10px">
           <el-table-column prop="area" label="地区" width="150px"/>
           <el-table-column prop="name" label="机构名称" width="150px"/>
           <el-table-column prop="number" label="疫苗余量" />
+          <!-- 暂无数据时显示 -->
+          <template v-slot:empty>
+            <el-empty :image-size="80" description="暂无数据"></el-empty>
+          </template>
         </el-table>
-      </el-main>
+      </el-card>
+    </el-main>
   </el-container>
 </template>
 
@@ -221,8 +229,18 @@ const options = [
 ]
 </script>
 
-<style scoped>
-.el-breadcrumb-item{
-    font-size: 30px;
+<style lang='scss' scoped>
+.vaccine-request{
+  height:560px;
+  .card-wrap{
+    height: 100%;
+  }
+  .el-main{
+    padding-top: 0;
+    padding-bottom: 0;
+    ::v-deep .el-card__body{
+      width: 100%;
+    }
+  }
 }
 </style>

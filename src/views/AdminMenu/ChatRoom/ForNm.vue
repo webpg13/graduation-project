@@ -1,7 +1,7 @@
 <template>
 <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">论坛</el-breadcrumb-item>
-    <el-button style="margin-left:600px;margin-top:5px" @click="click">发表</el-button>
+    <el-button style="margin-left:600px;" size="small" @click="click">发表</el-button>
   </el-breadcrumb>
   <el-divider style="margin-bottom:0px;margin-top:0px"/>
   <div class="wrapper">

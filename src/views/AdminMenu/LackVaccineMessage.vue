@@ -1,28 +1,36 @@
 <template>
-  <el-breadcrumb :separator-icon="ArrowRight">
+  <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">用户请求</el-breadcrumb-item>
     <el-breadcrumb-item class="el-breadcrumb-item">缺苗信息</el-breadcrumb-item>
   </el-breadcrumb>
   <el-divider/>
-  <el-input v-model="keywords" placeholder="请输入疫苗名称" style="width:300px"></el-input>
-  <el-table :data="datas.filter(item=>item.includes(keywords))" style="width: 100%" >
-    <el-table-column type="expand">
-      <template #default="props">
-        <div v-for="user in props.row.userMessage" :key="user.phone" style="display:flex;flex-direction:row">
-            <p style="margin-left:50px">联系姓名：{{user.name}}</p>
-            <p style="position:absolute;left:200px">联系电话：{{user.phone}}</p>
-            <p style="position:absolute;left:400px">联系人身份证号：{{user.IDNumber}}</p>
-        </div>
+  <div class="lack-vaccine-message">
+    <div class="search-wrap">
+      <el-input v-model="keywords" placeholder="请输入疫苗名称" style="width:300px"></el-input>
+    </div>
+    <el-table :data="datas.filter(item=>item.includes(keywords))" style="width: 100%" >
+      <el-table-column type="expand">
+        <template #default="props">
+          <div v-for="user in props.row.userMessage" :key="user.phone" style="display:flex;flex-direction:row">
+              <p style="margin-left:50px">联系姓名：{{user.name}}</p>
+              <p style="position:absolute;left:200px">联系电话：{{user.phone}}</p>
+              <p style="position:absolute;left:400px">联系人身份证号：{{user.IDNumber}}</p>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="疫苗名称" prop="vaccineName" />
+      <el-table-column label="请求人数" prop="number" />
+      <el-table-column align="right">
+        <template #default="scope">
+          <el-button  @click="handle(scope.$index, scope.row)">完成</el-button>
+        </template>
+      </el-table-column>
+      <!-- 暂无数据时显示 -->
+      <template v-slot:empty>
+        <el-empty :image-size="200" description="暂无数据"></el-empty>
       </template>
-    </el-table-column>
-    <el-table-column label="疫苗名称" prop="vaccineName" />
-    <el-table-column label="请求人数" prop="number" />
-    <el-table-column align="right">
-      <template #default="scope">
-        <el-button  @click="handle(scope.$index, scope.row)">完成</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+    </el-table>
+  </div>
 </template>
 
 <script setup>
@@ -147,7 +155,6 @@ axios.post('http://localhost:8081/graduation-project/AdminMenu/LackVaccineInit.p
 
 </script>
 <style scoped>
-.el-breadcrumb-item{
-    font-size: 30px;
+.lack-vaccine-message{
 }
 </style>

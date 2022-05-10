@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb :separator-icon="ArrowRight">
+  <el-breadcrumb :separator-icon="ArrowRight" class="el-breadcrumb_cls">
     <el-breadcrumb-item class="el-breadcrumb-item">机构请求</el-breadcrumb-item>
     <el-breadcrumb-item class="el-breadcrumb-item">请求答复</el-breadcrumb-item>
   </el-breadcrumb>
@@ -21,6 +21,10 @@
         <el-button type="text" size="large" @click="check(scope.row)">查看详情</el-button>
       </template>
     </el-table-column>
+    <!-- 暂无数据时显示 -->
+    <template v-slot:empty>
+      <el-empty :image-size="200" description="暂无数据"></el-empty>
+    </template>
   </el-table>
 </template>
 
