@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 
-#app{
+#app {
   font-family: NotoSansSC, Arial, Helvetica, sans-serif;
 }
 
@@ -12,6 +12,7 @@ body {
 }
 
 $gray: #eff3f8;
+$gray-909399: #909399;
 $c73b8f5: #73b8f5;
 $el-menu-bg: #f5f7fa;
 $el-menu-item-bg: #50c1e9;
@@ -33,20 +34,29 @@ $blue-409eff: #409eff;
   cursor: pointer;
 }
 
-.nav-cls{
+.nav-cls {
   height: 60px;
-  width:500px;
+  width: 500px;
   position: relative;
   left: 150px;
-  *{
-    color: #909399;
+
+  * {
+    color: $gray-909399;
     font-weight: 600;
   }
 }
 
+.clock-cls {
+  display: flex;
+  align-items: center;
+  margin-left: 200px;
+  font-size: 30px;
+  color: $gray-909399;
+}
+
 .el-header_cls {
   background-color: #eff3f8;
-  display: flex;
+  @include flex-hc;
   flex-direction: row;
   box-shadow: 0 2px 12px 0 rgb(115, 184, 245, 0.3);
   z-index: 10;
@@ -62,11 +72,13 @@ $blue-409eff: #409eff;
     .el-menu-item {
       background: $el-menu-item-bg;
 
-      &:hover,&.is-active {
+      &:hover,
+      &.is-active {
         color: var(--el-color-white);
         background-color: $blue-409eff;
       }
-      &.is-active{
+
+      &.is-active {
         border-right: 4px solid var(--el-color-white);
       }
     }
@@ -126,6 +138,14 @@ $blue-409eff: #409eff;
   @include flex-hvc;
   flex-direction: column;
   border: 2px solid $el-menu-item-bg;
+
+  .el-form {
+    .el-form-item {
+      .el-form-item__label {
+        text-align: center;
+      }
+    }
+  }
 }
 
 // 下拉菜单样式
@@ -152,4 +172,15 @@ $blue-409eff: #409eff;
       background: #eef2fe;
     }
   }
+}
+
+// 分页条样式
+.el-pagination_cls {
+  /* margin-left:300px; */
+  margin-top: 50px;
+  @include flex-hvc;
+  width: 100%;
+  background: var(--el-color-white);
+  padding: 8px 0;
+  border: 1px solid #dcdfe6;
 }

@@ -73,7 +73,7 @@
     </el-descriptions-item>
   </el-descriptions>
 
-  <el-pagination style="margin-left:400px;margin-top:50px"
+  <el-pagination class="el-pagination_cls"
   @current-change="handleCurrentChange"
   :current-page="currentPage"
   :page-size="pageSize"

@@ -25,7 +25,7 @@
       <el-empty :image-size="200" description="暂无数据"></el-empty>
     </template>
   </el-table>
-  <el-pagination style="margin-left:300px;margin-top:50px"
+  <el-pagination class="el-pagination_cls"
   @current-change="handleCurrentChange"
   :current-page="currentPage"
   background=""

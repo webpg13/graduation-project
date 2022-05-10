@@ -4,25 +4,26 @@
         <div class="VMSWDiv">
           <el-image :src="require('@/assets/VMSW.png')" :fit="cover"/>
         </div>
-        <div style="display: flex; align-items: center;">
-          <p class=" text_black" style="margin-left:200px;font-size:30px;">{{nowTime}}</p>
+        <div class="clock-cls">
+          <p>{{nowTime}}</p>
         </div>
         <div class="nav-cls">
           <el-row>
-            <el-col :span="6"><router-link to="/" target="_blank" ><p class=" text_black">首页</p></router-link></el-col>
-            <el-col :span="6"><p><a class=" text_black cursor_pointer" href="/vue3+TS.md" download>文档</a></p></el-col>
-            <el-col :span="6"><p class=" text_black">博客</p></el-col>
-            <el-col :span="6"><p class=" text_black">社区</p></el-col>
+            <el-col :span="6"><router-link to="/" target="_blank" ><p>首页</p></router-link></el-col>
+            <el-col :span="6"><p><a class="cursor_pointer" href="/vue3+TS.md" download>文档</a></p></el-col>
+            <el-col :span="6"><p>博客</p></el-col>
+            <el-col :span="6"><p>社区</p></el-col>
           </el-row>
         </div>
-        <div>
-          <p class=" text_black" style="margin-left:200px">欢迎您，{{name}}</p>
+        <!-- <div> -->
+          <p class="welcome">欢迎您，{{name}}</p>
+        <!-- </div> -->
+        <div class="logout-btn">
+          <el-button type="warning" plain @click="exit">退出</el-button>
         </div>
         <div>
-          <el-button type="text" style="margin-left:10px;margin-top:12px" @click="exit">退出</el-button>
-        </div>
-        <div>
-          <img :src="imageUrl" class="avatar"/>
+          <!-- <img :src="imageUrl" class="avatar"/> -->
+          <el-avatar class="avatar" shape="square" size="medium" :src="imageUrl"></el-avatar>
         </div>
       </el-header>
       <el-container>
@@ -104,7 +105,7 @@ const exit = () => {
   sessionStorage.clear()
 }
 
-const imageUrl = ref('')
+const imageUrl = ref('https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png')
 axios.post('http://localhost:8081/graduation-project/UserMenu/avatar/AvatarInit.php', Qs.stringify({
   userId: sessionStorage.getItem('currentUserId')
 })).then(function (response) {
@@ -161,7 +162,12 @@ const predefineColors = ref([
 .avatar{
   width: 30px;
   height: 30px;
-  margin-top: 10px;
   margin-left: 10px;
+}
+.logout-btn{
+}
+.welcome{
+  margin-left:200px;
+  color: #909399;
 }
 </style>>

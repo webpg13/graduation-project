@@ -108,7 +108,7 @@
       </template>
     </el-table-column>
   </el-table>
-  <el-pagination style="margin-left:300px;margin-top:50px"
+  <el-pagination class="el-pagination_cls"
   @size-change="handleSizeChange"
   @current-change="handleCurrentChange"
   :current-page="currentPage"

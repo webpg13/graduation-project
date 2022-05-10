@@ -1,31 +1,31 @@
 <template>
   <el-container class="outerContainer">
     <el-header height="320px">
-      <el-row>
+      <el-row class="module-row">
         <el-col :span="6">
           <div class="loginModule" onclick="window.location.href='./#/UserLogin';">
-            <i class="iconfont icon-dengluyemianyonghuming" style="font-size:2.8em"/>
+            <i class="iconfont icon-dengluyemianyonghuming"/>
             <div class="loginModuleText">
-              <p style="position:relative;top:13px">用户登录</p>
-              <p style="position:relative;top:-13px">UserLogin</p>
+              <p>用户登录</p>
+              <p>UserLogin</p>
             </div>
           </div>
         </el-col>
         <el-col :span="6">
           <div class="loginModule" onclick="window.location.href='./#/UserRegister';">
-            <i class="iconfont icon-zhuce" style="font-size:2.8em"/>
+            <i class="iconfont icon-zhuce"/>
             <div class="loginModuleText">
-              <p style="position:relative;top:13px">用户激活</p>
-              <p style="position:relative;top:-13px">UserRegister</p>
+              <p>用户激活</p>
+              <p>UserRegister</p>
             </div>
           </div>
         </el-col>
         <el-col :span="6">
           <div class="loginModule" onclick="window.location.href='./#/AdminLogin';">
-            <i class="iconfont icon-guanliyuan" style="font-size:2.8em"/>
+            <i class="iconfont icon-guanliyuan"/>
             <div class="loginModuleText">
-              <p style="position:relative;top:13px">管理员登录</p>
-              <p style="position:relative;top:-13px">AdminLogin</p>
+              <p>管理员登录</p>
+              <p>AdminLogin</p>
             </div>
           </div>
         </el-col>
@@ -33,13 +33,13 @@
           <div class="loginModule">
             <i class="iconfont icon-sousuo" style="font-size:3.2em"/>
             <div class="loginModuleText">
-              <p style="position:relative;top:13px">信息查询</p>
-              <p style="position:relative;top:-13px">Search</p>
+              <p>信息查询</p>
+              <p>Search</p>
             </div>
           </div>
         </el-col>
       </el-row>
-      <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel class="el-carousel_cls" :interval="4000" type="card" height="200px">
         <el-carousel-item>
           <el-image style="width: 750px; height: 200px" :src="require('@/assets/home/c1.png')" :fit="cover" />
         </el-carousel-item>
@@ -96,7 +96,7 @@
       </el-aside>
       <el-main>
         <p class="rankingText">实时疫情统计</p>
-        <el-table :data ="illData.arr" style="width:100%;margin-top:10px">
+        <el-table :data ="illData.arr" style="width:100%;margin-top:17px">
           <el-table-column prop="area" label="地区" />
           <el-table-column prop="addNumber" label="新增" />
           <el-table-column prop="sumNumber" label="累计" />
@@ -239,24 +239,52 @@ const tabClick = (row) => {
 }
 </script>
 
-<style scoped>
-.el-row {
-  background-color: rgb(27, 142, 184);
+<style scoped lang="scss">
+.module-row {
   position: relative;
-  height: 120px;
-}
-
-.el-col {
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  border-right: 1px solid white;
-  height: 120px;
+  min-height: 120px;
+  margin: 20px 0 0;
+  z-index: 2;
+  .el-col{
+    background-color: #409eff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    border-right: 2px solid var(--el-color-white);
+    padding: 10px 0;
+    transition: background 0.6s;
+    // height: 120px;
+    .loginModule{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      // width:136px;
+      cursor:pointer;
+      .iconfont{
+        font-size:2.8em;
+        background-color: var(--el-color-white);
+        border-radius: 50%;
+        padding: 10px;
+      }
+      .loginModuleText {
+        margin: 10px 0 0;
+        p{
+          color: var(--el-color-white);
+          margin: 0;
+        }
+      }
+    }
+    &:hover{
+      background-color: #0d63fa;
+    }
+  }
 }
 
 .el-carousel{
   position: relative;
-  top:-20px;
+  margin: 30px auto;
 }
 
 .el-carousel__item h3 {
@@ -277,31 +305,28 @@ const tabClick = (row) => {
 }
 
 .outerContainer{
-}
-
-.el-carousel{
-  margin: 0 auto;
-}
-
-.loginModule{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;
-  top: 30px;
-  width:136px;
-  height: 50px;
-  cursor:pointer;
-}
-
-.loginModuleText{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 3em;
+  height: 100%;
+  // background-image: linear-gradient(45deg, #d3eef9, #d3eef9);
+  /* background: url("@/assets/home/bg.jpg");
+  background-size: cover; */
 }
 
 .interContainer{
+  margin: 100px 0 0;
+  background: #d3eef9;
+  /* background: url("@/assets/home/bg2.jpg");
+  background-size: cover; */
+  &::before{
+    content: "";
+    background: url("@/assets/home/dots-arrow-right-side-large.png");
+    background-repeat: no-repeat;
+    right: 0;
+    top: 2.5%;
+    z-index: 0;
+    height: 793px;
+    width: 400px;
+    position: absolute;
+  }
 }
 
 .messageText{
